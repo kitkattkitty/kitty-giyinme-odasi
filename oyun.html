@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Kitty'nin Giyinme Odası</title>
+
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  font-family:Georgia, serif;
+}
+
+.game{
+  width:100vw;
+  height:100vh;
+  position:relative;
+  background:url("images/arka.png") center/cover no-repeat;
+}
+
+/* KIZ */
+.doll{
+  position:absolute;
+  left:205px;
+  top:120px;
+  width:255px;
+  height:620px;
+}
+
+.doll img{
+  position:absolute;
+}
+
+#body{
+  width:100%;
+  left:0;
+  top:0;
+  z-index:1;
+}
+
+/* GİYİLEN KIYAFET KATLARI */
+#worn-socks{z-index:2;}
+#worn-shoes{z-index:3;}
+#worn-skirt{z-index:4;}
+#worn-blouse{z-index:5;}
+#worn-dress{z-index:6;}
+#worn-jacket{z-index:7;}
+
+/* DOLAPTAKİ SEÇENEKLER */
+.closet-item{
+  position:absolute;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.closet-item:hover{
+  transform:scale(1.08);
+}
+
+/* DOLAP İÇİ KONUMLAR */
+#dress1-btn{left:1065px; top:130px; width:170px;}
+#dress2-btn{left:910px; top:117px; width:160px;}
+#dress3-btn{left:755px; top:113px; width:157px;}
+
+
+
+
+
+
+#blouse1-btn{left:950px; top:358px; width:155px;}
+#blouse2-btn{left:1090px; top:295px; width:115px;}
+
+
+
+
+
+
+
+
+
+
+
+
+#jacket1-btn{left:1220px; top:340px; width:188px;}
+#jacket2-btn{left:608px; top:400px; width:135px;}
+#jacket3-btn{left:580px; top:230px; width:200px;}
+
+
+
+
+
+
+
+
+
+#skirt1-btn{left:788px; top:330px; width:135px;}
+#skirt2-btn{left:833px; top:385px; width:150px;}
+
+
+
+
+
+
+
+
+
+
+#socks1-btn{left:780px; top:600px; width:80px;}   /* SOL kısa - aynen */
+
+#socks2-btn{left:860px; top:526px; width:105px;}  /* PEMBE-MAVİ → sağa açıldı */
+
+#socks3-btn{left:939px; top:522px; width:108px;}  /* MAVİ-BEYAZ → dengelendi */
+
+#socks4-btn{left:1035px; top:600px; width:90px;}  /* TOZLUK → aşağı indi + küçüldü */
+
+#socks5-btn{left:1115px; top:525px; width:110px;} 
+
+
+
+#shoes1-btn{left:927px; top:-3px; width:86px;}
+#shoes2-btn{left:1030px; top:26px; width:80px;}
+#shoes3-btn{left:1123px; top:-9px; width:90px;}
+
+/* ÇIKIŞ */
+.leave{
+  position:absolute;
+  bottom:25px;
+  left:250px;
+  padding:15px 35px;
+  border:none;
+  border-radius:25px;
+  background:#ffc7e2;
+  color:#7b3f91;
+  font-size:24px;
+  cursor:pointer;
+  box-shadow:0 0 20px #fff8de;
+}
+
+
+
+
+
+
+
+
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="game">
+
+  <div class="doll">
+    <img id="body" src="images/body.png">
+
+    <img id="worn-socks">
+    <img id="worn-shoes">
+    <img id="worn-skirt">
+    <img id="worn-blouse">
+    <img id="worn-dress">
+    <img id="worn-jacket">
+  </div>
+
+  <!-- DOLAPTA DURAN KIYAFETLER -->
+  <img id="dress1-btn" class="closet-item" src="images/dress1.png" onclick="wear('dress','images/dress1.png')">
+  <img id="dress2-btn" class="closet-item" src="images/dress2.png" onclick="wear('dress','images/dress2.png')">
+  <img id="dress3-btn" class="closet-item" src="images/dress3.png" onclick="wear('dress','images/dress3.png')">
+
+  <img id="blouse1-btn" class="closet-item" src="images/blouse1.png" onclick="wear('blouse','images/blouse1.png')">
+  <img id="blouse2-btn" class="closet-item" src="images/blouse2.png" onclick="wear('blouse','images/blouse2.png')">
+
+  <img id="jacket1-btn" class="closet-item" src="images/jacket1.png" onclick="wear('jacket','images/jacket1.png')">
+  <img id="jacket2-btn" class="closet-item" src="images/jacket2.png" onclick="wear('jacket','images/jacket2.png')">
+  <img id="jacket3-btn" class="closet-item" src="images/jacket3.png" onclick="wear('jacket','images/jacket3.png')">
+
+  <img id="skirt1-btn" class="closet-item" src="images/skirt1.png" onclick="wear('skirt','images/skirt1.png')">
+  <img id="skirt2-btn" class="closet-item" src="images/skirt2.png" onclick="wear('skirt','images/skirt2.png')">
+
+  <img id="socks1-btn" class="closet-item" src="images/socks1.png" onclick="wear('socks','images/socks1.png')">
+  <img id="socks2-btn" class="closet-item" src="images/socks2.png" onclick="wear('socks','images/socks2.png')">
+  <img id="socks3-btn" class="closet-item" src="images/socks3.png" onclick="wear('socks','images/socks3.png')">
+  <img id="socks4-btn" class="closet-item" src="images/socks4.png" onclick="wear('socks','images/socks4.png')">
+  <img id="socks5-btn" class="closet-item" src="images/socks5.png" onclick="wear('socks','images/socks5.png')">
+
+  <img id="shoes1-btn" class="closet-item" src="images/shoes1.png" onclick="wear('shoes','images/shoes1.png')">
+  <img id="shoes2-btn" class="closet-item" src="images/shoes2.png" onclick="wear('shoes','images/shoes2.png')">
+  <img id="shoes3-btn" class="closet-item" src="images/shoes3.png" onclick="wear('shoes','images/shoes3.png')">
+
+
+
+</div>
+
+<script>
+const wornItems = {};
+
+const positions = {
+  dress1:  {top:116,  left:22,  width:203},
+  dress2:  {top:101,  left:16,  width:207},
+  dress3:  {top:110,  left:38,  width:170},
+
+
+
+
+
+  blouse1: {top:140,  left:18,  width:220},
+  blouse2: {top:84,  left:58,  width:140},
+
+  
+
+
+  jacket1: {top:145,  left:8,  width:224},
+  jacket2: {top:138,  left:32,  width:170},
+  jacket3: {top:120,  left:-26,  width:289},
+
+
+
+
+
+
+
+  skirt1:  {top:256, left:29,  width:186},
+  skirt2:  {top:225, left:42,  width:193},
+
+
+
+
+
+
+  socks1:  {top:486, left:71,  width:100},
+  socks2:  {top:360, left:47,  width:155},
+  socks3:  {top:262, left:26,  width:195},
+  socks4:  {top:435, left:61,  width:120},
+  socks5:  {top:355, left:42,  width:162},
+
+
+
+
+
+
+
+  shoes1:  {top:469, left:71, width:100},
+  shoes2:  {top:510, left:74, width:100},
+  shoes3:  {top:440, left:56, width:136}
+};
+
+
+
+
+
+
+
+
+function wear(type, src){
+  const img = document.getElementById("worn-" + type);
+
+  if(wornItems[type] === src){
+    img.src = "";
+    wornItems[type] = "";
+    return;
+  }
+
+  wornItems[type] = src;
+  img.src = src;
+
+  const fileName = src.split("/").pop().replace(".png", "");
+
+img.style.top = positions[fileName].top + "px";
+img.style.left = positions[fileName].left + "px";
+img.style.width = positions[fileName].width + "px";
+}
+</script>
+
+</body>
+</html>

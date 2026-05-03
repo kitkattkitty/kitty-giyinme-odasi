@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Kitty'nin Giyinme Odası</title>
+
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  background:#f7cfe4;
+}
+
+.menu{
+  width:100vw;
+  height:100vh;
+  position:relative;
+  background:url("images/menu.png") center/cover no-repeat;
+}
+
+.sparkles, .hearts{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.sparkles span, .hearts span{
+  position:absolute;
+  font-size:18px;
+  animation: floatUp linear infinite;
+  text-shadow:0 0 12px currentColor;
+}
+
+.sparkles span:nth-child(3n){ color:#ff8de1; }
+.sparkles span:nth-child(3n+1){ color:#b38dff; }
+.sparkles span:nth-child(3n+2){ color:#ffe27a; }
+
+.hearts span{
+  color:#ff8dca;
+  animation-name: fallDown;
+}
+
+.start, .exit{
+  position:absolute;
+  width:345px;
+  height:60px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  border-radius:28px;
+  z-index:5;
+}
+
+.start {
+  top: 71%;
+  left: 940px !important;
+}
+
+.exit {
+  top: 82%;
+  left: 940px !important;
+}
+
+.start, .exit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.start:hover, .exit:hover{
+    background: rgba(255,255,255,0.25);
+    box-shadow: 0 0 60px #ffc0cb, 0 0 80px #ff69b4, 0 0 120px #ff8de1;
+    transform: translateX(-50%) scale(1.08);
+}
+
+@keyframes floatUp{
+  0%{ opacity:0; transform:translateY(0) scale(.7); }
+  40%{ opacity:1; }
+  100%{ opacity:0; transform:translateY(-90px) scale(1.4); }
+}
+
+@keyframes fallDown{
+  0%{ opacity:0; transform:translateY(-40px) scale(.8); }
+  30%{ opacity:1; }
+  100%{ opacity:0; transform:translateY(120px) scale(1.2); }
+}
+.start, .exit {
+    position: absolute;
+    left: 49%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+
+</style>
+</head>
+
+<body>
+<div class="menu">
+  <div class="sparkles"></div>
+  <div class="hearts"></div>
+
+  <button class="start" onclick="window.location.href='oyun.html'"></button>
+  <button class="exit" onclick="alert('Oyundan çıkılıyor...')"></button>
+</div>
+
+<script>
+const sparkles = document.querySelector(".sparkles");
+const hearts = document.querySelector(".hearts");
+
+const sparkleShapes = [ "💗"];
+const heartShapes = [ "💕" ];
+
+for(let i = 0; i < 120; i++){
+  const s = document.createElement("span");
+  s.textContent = sparkleShapes[Math.floor(Math.random() * sparkleShapes.length)];
+  s.style.left = Math.random() * 100 + "%";
+  s.style.top = Math.random() * 100 + "%";
+  s.style.animationDuration = (2 + Math.random() * 4) + "s";
+  s.style.animationDelay = Math.random() * 4 + "s";
+  sparkles.appendChild(s);
+}
+
+for(let i = 0; i < 45; i++){
+  const h = document.createElement("span");
+  h.textContent = heartShapes[Math.floor(Math.random() * heartShapes.length)];
+  h.style.left = Math.random() * 100 + "%";
+  h.style.top = Math.random() * 100 + "%";
+  h.style.animationDuration = (4 + Math.random() * 5) + "s";
+  h.style.animationDelay = Math.random() * 5 + "s";
+  hearts.appendChild(h);
+}
+
+document.querySelectorAll("button").forEach(btn => {
+  btn.addEventListener("mouseenter", () => {
+    for(let i = 0; i < 18; i++){
+      const s = document.createElement("span");
+      s.textContent = "✦";
+      s.style.left = (45 + Math.random() * 10) + "%";
+      s.style.top = btn.classList.contains("start") ? "74%" : "85%";
+      s.style.animationDuration = "1.2s";
+      s.style.color = ["#ff8de1", "#b38dff", "#ffe27a"][Math.floor(Math.random()*3)];
+      sparkles.appendChild(s);
+      setTimeout(() => s.remove(), 1300);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
